@@ -17,6 +17,9 @@
   "homepage": "https://github.com/AdityaBheke/Easily#readme",
   "description": "",
   "dependencies": {
-    "express": "^4.19.2"
-  }
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-ejs-layouts": "^2.5.1"
+  },
+  "type": "module"
 }

@@ -16,6 +16,9 @@ app.get('/',(req,res)=>{
 app.get('/jobsList',(req,res)=>{
     res.render('jobsList');
 })
+app.get('/job',(req,res)=>{
+    res.render('job');
+})
 
 
 app.listen(3000,()=>{

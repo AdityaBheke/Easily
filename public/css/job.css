@@ -1,0 +1,22 @@
+.card-header-img{
+    width: 100%;
+}
+.job-container{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card-header-bg{
+    background-color: rgba(255, 255, 255, 0.85);
+    background-image: url('../images/job.jpg');
+    background-size: cover;
+    background-blend-mode: color;
+    height: auto;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 70px;
+    text-shadow: 2px 2px 4px rgb(180, 180, 180);
+    text-align: center;
+}

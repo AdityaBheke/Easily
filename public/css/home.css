@@ -29,6 +29,7 @@ main.home{
 }
 .btn-orange:hover{
     background-color: #c6622f;
+    color: white;
 }
 .btn-yellow{
     background-color: #FFDA78;

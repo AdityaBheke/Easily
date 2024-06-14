@@ -1,0 +1,61 @@
+<div class="col-md-5 col-sm-9 col-11 mx-auto mt-2 mb-2 border border-dark p-3 rounded">
+    <h3 class="text-center">Create New Job</h3>
+    <form class="row g-3" method="post" action="/jobs">
+        <div class="col-12">
+            <label for="companyname" class="form-label">Company Name</label>
+            <input type="text" name="company" class="form-control" id="companyname" placeholder="Enter Company Name">
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Designation</label>
+            <select id="" name="designation" class="form-select">
+                <option disabled selected>Select Designation</option>
+                <option value="SDE">SDE</option>
+                <option value="HR">HR</option>
+                <option value="Tester">Tester</option>
+                <option value="Trainee">Trainee</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Category</label>
+            <select id="" name="category" class="form-select">
+                <option disabled selected>Select Category</option>
+                <option value="Tech">Tech</option>
+                <option value="Non Tech">Non Tech</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label for="" class="form-label">Location</label>
+            <input type="text" name="location" class="form-control" id="" placeholder="Enter Job Location">
+        </div>
+        <div class="col-6">
+            <label for="" class="form-label">Enter Salary</label>
+            <input type="number" name="salary" class="form-control" id="" placeholder="">
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Total Openings</label>
+            <input type="number" name="openings" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Last Date to Apply</label>
+            <input type="date" name="lastDate" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Skills</label>
+            <select class="form-select" name="skills" multiple size="4" aria-label="Size 3 select example">
+                <option selected>Select Skills</option>
+                <option value="ReactJs">ReactJs</option>
+                <option value="NodeJs">NodeJs</option>
+                <option value="Html">Html</option>
+                <option value="CSS">CSS</option>
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="Data Structures">Data Structures</option>
+                <option value="MongoDB">MongoDB</option>
+            </select>
+        </div>
+
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-orange">Create Job</button>
+        </div>
+    </form>
+</div>

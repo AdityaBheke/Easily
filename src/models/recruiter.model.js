@@ -8,7 +8,6 @@ export class RecruiterModel{
     }
     static addRecruiter(recruiter){
         recruiters.push(recruiter);
-        console.log("Recruiter added");
     }
     static authenticateRecruiter(email, password){
         const reqReqruiter = recruiters.find((recruiter)=>{return recruiter.email==email&&recruiter.password==password});

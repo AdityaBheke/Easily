@@ -20,3 +20,9 @@
     text-shadow: 2px 2px 4px rgb(180, 180, 180);
     text-align: center;
 }
+.job-form{
+    width: 60%;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto; 
+}

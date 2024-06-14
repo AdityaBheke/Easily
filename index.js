@@ -19,10 +19,8 @@ app.get('/',(req,res)=>{
 })
 app.get('/jobs',jobController.getJobs);
 app.get('/jobs/:id',jobController.getJobDetails);
-
-// app.get('/job',(req,res)=>{
-//     res.render('job');
-// })
+app.get('/createjob',jobController.getCreateJobView);
+app.post('/jobs',jobController.createJob);
 
 app.post('/registerRecruiter',recruiterController.registerRecruiter);
 app.post('/loginRecruiter',recruiterController.loginRecruiter);

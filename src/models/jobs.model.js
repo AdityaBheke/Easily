@@ -1,21 +1,20 @@
 
 export class JobModel{
-    constructor(designation, category, company, location, salary, lastDate, postDate, skills, openings, applicants){
+    constructor(designation, category, company, location, salary, lastDate, postDate, skills, openings){
         this.id = getNextId();
         this.designation = designation;
         this.category = category;
         this.company = company;
         this.location = location;
         this.salary = salary;
-        this.lastDate = lastDate;
-        this.postDate = postDate;
+        this.lastDate = getDateString(new Date(lastDate));
+        this.postDate = getDateString(new Date());
         this.skills = skills;
         this.openings = openings;
-        this.applicants = applicants;
+        this.applicants = [];
     }
     static addJob(job){
         jobs.push(job);
-        console.log('Job Created');
     }
     static getAllJobs(){
         return jobs;
@@ -24,7 +23,13 @@ export class JobModel{
         return jobs.find((job)=>{return job.id == id});
     }
 }
-
+function getDateString(date) {
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let day = date.getDate();
+  let month = months[date.getMonth()];
+  let year = date.getFullYear();
+  return `${day} ${month} ${year}`;
+}
 function getNextId() {
     if (jobs.length>0) {
         return jobs[jobs.length-1].id + 1;

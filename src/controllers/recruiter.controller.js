@@ -12,7 +12,7 @@ export class RecruiterController{
         const {email, password} = req.body;
         const auth = RecruiterModel.authenticateRecruiter(email, password);
         if (auth) {
-            res.render('jobsList');
+            res.redirect('/jobs');
         }else{
             res.render('home',{errorMessage:'Invalid Credentials'})
         }

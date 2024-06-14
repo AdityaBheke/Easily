@@ -13,6 +13,9 @@ app.set('views',path.resolve('src','views'))
 app.get('/',(req,res)=>{
     res.render('home');
 })
+app.get('/jobsList',(req,res)=>{
+    res.render('jobsList');
+})
 
 
 app.listen(3000,()=>{

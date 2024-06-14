@@ -1,0 +1,33 @@
+.jobs-list-background{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.card{
+    background-color: #2A629A;
+    color: white;
+    margin: 20px;
+    padding: 10px;
+}
+.outline-yellow{
+    border-radius: 5px;
+    border: 1px solid #FFDA78;
+    color: #FFDA78;
+    padding: 3px;
+}
+.outline-yellow:hover{
+    border-radius: 5px;
+    border: 1px solid #FFDA78;
+    color: #FFDA78;
+}
+.color-orange{
+    color: #FF7F3E;
+}
+.color-yellow{
+    color: #FFDA78;
+}
+.skills-container{
+    max-width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -4,6 +4,10 @@ export class JobController{
     getCreateJobView(req,res){
         res.render('createJob');
     }
+    getupdateJobView(req,res){
+        const job = JobModel.getJobById(req.params.id);
+        res.render('updateJob',{job:job});
+    }
     createJob(req,res){
         const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;
         const job = new JobModel(designation, category, company, location, salary, lastDate, postDate, skills, openings);
@@ -16,5 +20,16 @@ export class JobController{
     getJobDetails(req, res){
         const job = JobModel.getJobById(req.params.id);
         res.render('job',{job:job});
+    }
+    updateJob(req,res){
+        const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;
+        const job = new JobModel(designation, category, company, location, salary, lastDate, postDate, skills, openings);
+        job.id = req.params.id;
+        JobModel.updateJob(job);
+        res.redirect(`/jobs/${req.params.id}`);
+    }
+    deleteJob(req,res){
+        JobModel.deleteJob(req.params.id);
+        res.redirect('/jobs');
     }
 }

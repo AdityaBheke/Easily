@@ -1,0 +1,61 @@
+<div class="col-md-5 col-sm-9 col-11 mx-auto mt-2 mb-2 border border-dark p-3 rounded">
+    <h3 class="text-center">Update Job</h3>
+    <form class="row g-3" method="post" action="/updatejob/<%=job.id%>">
+        <div class="col-12">
+            <label for="companyname" class="form-label">Company Name</label>
+            <input type="text" name="company" class="form-control" id="companyname" placeholder="Enter Company Name" value="<%=job.company%>">
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Designation</label>
+            <select id="" name="designation" class="form-select">
+                <option disabled selected>Select Designation</option>
+                <option value="SDE" <%= job.designation == 'SDE' ? 'selected' : '' %> >SDE</option>
+                <option value="HR" <%= job.designation == 'HR' ? 'selected' : '' %> >HR</option>
+                <option value="Tester" <%= job.designation == 'Tester' ? 'selected' : '' %> >Tester</option>
+                <option value="Trainee" <%= job.designation == 'Trainee' ? 'selected' : '' %> >Trainee</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Category</label>
+            <select id="" name="category" class="form-select">
+                <option disabled selected>Select Category</option>
+                <option value="Tech" <%= job.category == 'Tech' ? 'selected' : '' %> >Tech</option>
+                <option value="Non Tech" <%= job.category == 'Non Tech' ? 'selected' : '' %> >Non Tech</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label for="" class="form-label">Location</label>
+            <input type="text" name="location" class="form-control" id="" placeholder="Enter Job Location" value="<%=job.location%>">
+        </div>
+        <div class="col-6">
+            <label for="" class="form-label">Enter Salary</label>
+            <input type="number" name="salary" class="form-control" id="" placeholder="" value="<%=job.salary%>">
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Total Openings</label>
+            <input type="number" name="openings" class="form-control" id="inputCity" value="<%=job.openings%>">
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Last Date to Apply</label>
+            <input type="date" name="lastDate" class="form-control" id="inputCity" value="<%= (new Date(job.lastDate)).getFullYear() %>-<%=(new Date(job.lastDate)).getMonth()+1<10?'0'+((new Date(job.lastDate)).getMonth()+1):(new Date(job.lastDate)).getMonth()+1 %>-<%=(new Date(job.lastDate)).getDate()<10?'0'+(new Date(job.lastDate)).getDate():(new Date(job.lastDate)).getDate() %>">
+        </div>
+        <div class="col-md-6">
+            <label for="" class="form-label">Skills</label>
+            <select class="form-select" name="skills" multiple size="4" aria-label="Size 3 select example">
+                <option>Select Skills</option>
+                <option value="ReactJs" <%=((job.skills).find((skill)=>skill=='ReactJs'))=='ReactJs'?'selected':''%> >ReactJs</option>
+                <option value="NodeJs" <%=((job.skills).find((skill)=>skill=='NodeJs'))=='NodeJs'?'selected':''%> >NodeJs</option>
+                <option value="Html" <%=((job.skills).find((skill)=>skill=='Html'))=='Html'?'selected':''%> >Html</option>
+                <option value="CSS" <%=((job.skills).find((skill)=>skill=='CSS'))=='CSS'?'selected':''%> >CSS</option>
+                <option value="Java" <%=((job.skills).find((skill)=>skill=='Java'))=='Java'?'selected':''%> >Java</option>
+                <option value="Python" <%=((job.skills).find((skill)=>skill=='Python'))=='Python'?'selected':''%> >Python</option>
+                <option value="Data Structures" <%=((job.skills).find((skill)=>skill=='Data Structures'))=='Data Structures'?'selected':''%> >Data Structures</option>
+                <option value="MongoDB" <%=((job.skills).find((skill)=>skill=='MongoDB'))=='MongoDB'?'selected':''%> >MongoDB</option>
+            </select>
+        </div>
+        <input type="hidden" name="postDate" value="<%=job.postDate%>">
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-orange">Update Job</button>
+        </div>
+    </form>
+</div>

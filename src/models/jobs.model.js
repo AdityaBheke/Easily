@@ -15,12 +15,25 @@ export class JobModel{
     }
     static addJob(job){
         jobs.push(job);
+        console.log('Job Added');
     }
     static getAllJobs(){
+        console.log('All jobs fetched');
         return jobs;
     }
     static getJobById(id){
+        console.log('Job with id '+id+' is fetched');
         return jobs.find((job)=>{return job.id == id});
+    }
+    static updateJob(updatedJob){
+        const index = jobs.findIndex((job)=>{return job.id == updatedJob.id});
+        jobs[index] = updatedJob;
+        console.log('Updated Job',jobs[index]);
+    }
+    static deleteJob(id){
+        const index = jobs.findIndex((job)=>{return job.id == id});
+        jobs.splice(index,1);
+        console.log('Job deleted',jobs);
     }
 }
 function getDateString(date) {
@@ -37,7 +50,7 @@ function getNextId() {
         return 1;
     }
 }
-const jobs = [
+let jobs = [
     {
         id: 1,
         designation: 'SDE',
@@ -45,9 +58,9 @@ const jobs = [
         company: 'Coding Ninjas',
         location: 'Delhi',
         salary: '900000',
-        lastDate: '12-06-2024',
-        postDate: '09-06-2024',
-        skills: ['ReactJS','NodeJS','Html','JS','CSS'],
+        lastDate: '12 July 2024',
+        postDate: '09 July 2024',
+        skills: ['ReactJs','NodeJs','MongoDB','Html'],
         openings: 3,
         applicants: [1,2,3]
     },
@@ -58,10 +71,11 @@ const jobs = [
         company: 'Capgemini',
         location: 'Pune',
         salary: '800000',
-        lastDate: '14-06-2024',
-        postDate: '06-06-2024',
-        skills: ['ReactJS','NodeJS','Html','JS','CSS'],
+        lastDate: '14 June 2024',
+        postDate: '06 June 2024',
+        skills: ['ReactJs','NodeJs','MongoDB'],
         openings: 5,
         applicants: [1,2,3]
     }
 ]
+

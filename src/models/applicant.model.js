@@ -1,27 +1,23 @@
 
 export class ApplicantModel{
     constructor(name,email,mobile,resume){
-        this.id = 1;
+        this.id = getNextId();
         this.name = name;
         this.email = email;
         this.mobile = mobile;
         this.resume = resume;
     }
+    static addApplicant(applicant){
+        applicants.push(applicant);
+    }
 }
 
-const applicants = [
-    {
-        id: 1,
-        name: 'Aditya',
-        email: 'ad03@gmail.com',
-        mobile: '9876543210',
-        resume: ''
-    },
-    {
-        id: 2,
-        name: 'Sourav',
-        email: 'sourav@gmail.com',
-        mobile: '9976543210',
-        resume: ''
+function getNextId() {
+    if (applicants.length>0) {
+        return applicants[applicants.length-1].id + 1;
+    } else {
+        return 1;
     }
-]
+}
+
+const applicants = [];

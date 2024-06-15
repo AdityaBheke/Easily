@@ -15,7 +15,7 @@ export class JobModel{
     }
     static addJob(job){
         jobs.push(job);
-        console.log('Job Added');
+        console.log('Job Added',job.id);
     }
     static getAllJobs(){
         console.log('All jobs fetched');

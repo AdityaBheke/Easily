@@ -1,0 +1,25 @@
+<h1 class="col-md-7 col-sm-9 col-11 mx-auto mt-4 mb-5 text-center">Total <%= job.applicants.length %> applicants applied for <strong><%=job.designation %></strong> role at <strong><%=job.company%></strong></h1>
+<div class="col-md-6 col-sm-9 col-11 mx-auto mt-2 mb-2 p-3">
+    <table class="table table-hover align-middle border border-dark">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Resume</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%job.applicants.forEach((applicant)=>{ %>
+            <tr>
+                <th scope="row"><%= applicant.id %></th>
+                <td><%= applicant.name %></td>
+                <td><%= applicant.email %></td>
+                <td><%= applicant.mobile %></td>
+                <td><a href="/uploads/<%= applicant.resume %>" target="_blank" class="btn btn-primary">View</a></td>
+            </tr>
+        <% })%>
+        </tbody>
+    </table>
+</div>

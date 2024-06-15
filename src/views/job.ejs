@@ -11,7 +11,12 @@
             <p class="card-text"><i class="bi bi-wallet2"></i> <%= job.salary %></p>
             <p class="card-text"><i class="bi bi-calendar4-week"></i> Apply By <%= job.lastDate %></p>
             <p class="card-text"><i class="bi bi-person-add"></i> Number of Openings <%= job.openings %></p>
-            <p class="card-text"><i class="bi bi-people"></i> Applicants <%= job.applicants.length %></p>
+            <p class="card-text">
+              <a href="/jobs/<%=job.id%>/applicants" class="link-danger link-offset-2 link-underline link-underline-opacity-0">
+                <i class="bi bi-people"></i> Applicants <%= job.applicants.length %>
+              </a>
+            </p>
+
             <div class="skills-container mt-2 mb-2">
               <% job.skills.forEach((skill) => { %>
               <span class="btn outline-yellow m-1"><%= skill%></span>

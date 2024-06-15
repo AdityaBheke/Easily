@@ -26,6 +26,8 @@ export class JobController{
         const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;
         const job = new JobModel(designation, category, company, location, salary, lastDate, postDate, skills, openings);
         job.id = req.params.id;
+        const oldJob = JobModel.getJobById(req.params.id);
+        job.applicants = oldJob.applicants;
         JobModel.updateJob(job);
         res.redirect(`/jobs/${req.params.id}`);
     }
@@ -38,8 +40,13 @@ export class JobController{
         const { filename } = req.file;
         const applicant = new ApplicantModel(name,email,mobile,filename);
         const job = JobModel.getJobById(req.params.id);
+        ApplicantModel.addApplicant(applicant);
         job.applicants.push(applicant);
         JobModel.updateJob(job);
         res.redirect(`/jobs/${req.params.id}`);
+    }
+    getApplicants(req,res){
+        const job = JobModel.getJobById(req.params.id);
+        res.render('applicants',{job:job});
     }
 }

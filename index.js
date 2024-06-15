@@ -25,6 +25,7 @@ app.post('/jobs',jobController.createJob);
 app.get('/updatejob/:id',jobController.getupdateJobView);
 app.post('/updatejob/:id',jobController.updateJob);
 app.post('/deletejob/:id',jobController.deleteJob);
+app.get('/jobs/:id/applicants',jobController.getApplicants);
 
 app.post('/apply/:id', fileUpload.single('resume'), jobController.apply);
 

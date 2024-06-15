@@ -38,30 +38,33 @@
         </div>
         <div class="modal-body">
             <h1 class="modal-title fs-5 text-center mb-3" id="exampleModalLabel">Apply for <strong><%= job.designation %></strong> in <%= job.company %></h1>
-            <div class="mb-3">
+            <form action="/apply/<%=job.id%>" method="post" enctype="multipart/form-data">
+              <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">Name</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter Name">
+                <input type="text" class="form-control" name="name" id="formGroupExampleInput" placeholder="Enter Name">
               </div>
               <div class="mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Email</label>
-                <input type="email" class="form-control" id="formGroupExampleInput2" placeholder="Enter Email">
+                <input type="email" class="form-control" name="email" id="formGroupExampleInput2" placeholder="Enter Email">
               </div>
               <div class="mb-3">
                 <label for="mobile" class="form-label">Contact</label>
                 <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="addon-wrapping">+91</span>
-                    <input type="rel" class="form-control" placeholder="Enter Mobile" aria-label="Username" aria-describedby="addon-wrapping">
+                  <span class="input-group-text" id="addon-wrapping">+91</span>
+                  <input type="tel" class="form-control" name="mobile" placeholder="Enter Mobile" aria-label="Username"
+                    aria-describedby="addon-wrapping">
                 </div>
               </div>
               <div class="mb-3">
                 <label for="resume" class="form-label">Resume</label>
                 <div class="input-group flex-nowrap">
-                    <input type="file" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+                  <input type="file" class="form-control" name="resume" aria-label="Username" aria-describedby="addon-wrapping">
                 </div>
               </div>
               <div class="mb-3 d-flex justify-content-center">
                 <button type="submit" class="btn btn-orange" data-bs-toggle="modal" data-bs-target="#loginModal">Apply</button>
               </div>
+            </form>
         </div>
       </div>
     </div>

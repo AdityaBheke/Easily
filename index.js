@@ -3,6 +3,7 @@ import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
 import { RecruiterController } from "./src/controllers/recruiter.controller.js";
 import { JobController } from "./src/controllers/jobs.controller.js";
+import fileUpload from './src/middlewares/upload.file.middleware.js';
 
 const app = express();
 app.use(expressEjsLayouts);
@@ -24,6 +25,8 @@ app.post('/jobs',jobController.createJob);
 app.get('/updatejob/:id',jobController.getupdateJobView);
 app.post('/updatejob/:id',jobController.updateJob);
 app.post('/deletejob/:id',jobController.deleteJob);
+
+app.post('/apply/:id', fileUpload.single('resume'), jobController.apply);
 
 app.post('/registerRecruiter',recruiterController.registerRecruiter);
 app.post('/loginRecruiter',recruiterController.loginRecruiter);

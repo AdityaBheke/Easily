@@ -1,3 +1,4 @@
+import { ApplicantModel } from "../models/applicant.model.js";
 import { JobModel } from "../models/jobs.model.js";
 
 export class JobController{
@@ -31,5 +32,14 @@ export class JobController{
     deleteJob(req,res){
         JobModel.deleteJob(req.params.id);
         res.redirect('/jobs');
+    }
+    apply(req,res){
+        const {name,email,mobile,resume} = req.body;
+        const { filename } = req.file;
+        const applicant = new ApplicantModel(name,email,mobile,filename);
+        const job = JobModel.getJobById(req.params.id);
+        job.applicants.push(applicant);
+        JobModel.updateJob(job);
+        res.redirect(`/jobs/${req.params.id}`);
     }
 }

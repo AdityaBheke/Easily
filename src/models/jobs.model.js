@@ -62,7 +62,7 @@ let jobs = [
         postDate: '09 July 2024',
         skills: ['ReactJs','NodeJs','MongoDB','Html'],
         openings: 3,
-        applicants: [1,2,3]
+        applicants: []
     },
     {
         id: 2,
@@ -75,7 +75,7 @@ let jobs = [
         postDate: '06 June 2024',
         skills: ['ReactJs','NodeJs','MongoDB'],
         openings: 5,
-        applicants: [1,2,3]
+        applicants: []
     }
 ]
 

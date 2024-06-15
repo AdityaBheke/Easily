@@ -12,6 +12,11 @@
             <p class="card-text"><i class="bi bi-calendar4-week"></i> Apply By <%= job.lastDate %></p>
             <p class="card-text"><i class="bi bi-person-add"></i> Number of Openings <%= job.openings %></p>
             <p class="card-text"><i class="bi bi-people"></i> Applicants <%= job.applicants.length %></p>
+            <div class="skills-container mt-2 mb-2">
+              <% job.skills.forEach((skill) => { %>
+              <span class="btn outline-yellow m-1"><%= skill%></span>
+              <% }); %>
+            </div>
 
             <a class="btn btn-orange p-2" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now <i class="bi bi-box-arrow-up-right"></i></a>
             <a href="/updatejob/<%=job.id%>" class="btn btn-warning p-2">Update <i class="bi bi-pencil-square"></i></a>

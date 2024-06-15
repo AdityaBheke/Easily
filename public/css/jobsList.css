@@ -9,6 +9,9 @@
     margin: 20px;
     padding: 10px;
 }
+.card-width{
+    width: 300px;
+}
 .outline-yellow{
     border-radius: 5px;
     border: 1px solid #FFDA78;
@@ -27,7 +30,6 @@
     color: #FFDA78;
 }
 .skills-container{
-    max-width: 200px;
     display: flex;
     flex-wrap: wrap;
 }

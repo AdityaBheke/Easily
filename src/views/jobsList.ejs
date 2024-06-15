@@ -1,20 +1,22 @@
 <main class="jobs-list-background">
 
     <% jobsList.forEach((job) => { %>
-      <div class="card">
-        <div class="card-body">
+      <div class="card card-width">
+        <div class="card-body d-flex flex-column justify-content-between">
           <button class="btn btn-outline-light mb-3" disabled>Actively Hiring <i class="bi bi-graph-up-arrow"></i></button>
-          <h5 class="card-title color-yellow"><%= job.company%></h5>
-          <p class="mb-3"><span><%= job.category%> </span><span class="color-orange"><%= job.designation%></span></p>
-          <span class="card-text"><i class="bi bi-geo-alt-fill"></i> <%= job.location%></span><br>
-          <span class="card-text"><i class="bi bi-currency-rupee"></i> <%= job.salary%></span>
+          <div class="d-flex flex-column flex-grow-1">
+            <h5 class="card-title color-yellow"><%= job.company%></h5>
+            <p class="mb-3"><span><%= job.category%> </span><span class="color-orange"><%= job.designation%></span></p>
+            <span class="card-text mb-2"><i class="bi bi-geo-alt-fill"></i> <%= job.location%></span>
+            <span class="card-text mb-3"><i class="bi bi-currency-rupee"></i> <%= job.salary%></span>
           
-          <div class="skills-container mt-2 mb-2">
-            <% job.skills.forEach((skill) => { %>
-            <span class="btn outline-yellow m-1"><%= skill%></span>
-            <% }); %>
+            <div class="skills-container mt-2 mb-3">
+              <% job.skills.forEach((skill) => { %>
+                <span class="btn outline-yellow m-1"><%= skill%></span>
+              <% }); %>
+            </div>
           </div>
-          <a href="/jobs/<%=job.id%>" class="btn btn-orange">View details</a>
+          <a href="/jobs/<%=job.id%>" class="btn btn-orange align-self-center">View details</a>
         </div>
       </div>
     <% }); %>

@@ -10,13 +10,7 @@ export class JobController{
     }
     createJob(req,res){
         const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;
-        const skillsArray = [];
-        if (Array.isArray(skills)) {
-           skillsArray.push(...skills);
-        }else{
-           skillsArray.push(skills);
-        }
-        const job = new JobModel(designation, category, company, location, salary, lastDate, postDate, skillsArray, openings);
+        const job = new JobModel(designation, category, company, location, salary, lastDate, postDate, skills, openings);
         JobModel.addJob(job);
         res.redirect('/jobs');
     }
@@ -29,13 +23,7 @@ export class JobController{
     }
     updateJob(req,res){
         const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;
-        const skillsArray = [];
-        if (Array.isArray(skills)) {
-           skillsArray.push(...skills);
-        }else{
-           skillsArray.push(skills);
-        }
-        const job = new JobModel(designation, category, company, location, salary, lastDate, postDate, skillsArray, openings);
+        const job = new JobModel(designation, category, company, location, salary, lastDate, postDate, skills, openings);
         job.id = req.params.id;
         JobModel.updateJob(job);
         res.redirect(`/jobs/${req.params.id}`);

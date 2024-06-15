@@ -9,7 +9,7 @@ export class JobModel{
         this.salary = salary;
         this.lastDate = getDateString(new Date(lastDate));
         this.postDate = getDateString(new Date());
-        this.skills = skills;
+        this.skills = new Array().concat(skills);
         this.openings = openings;
         this.applicants = [];
     }

@@ -1,5 +1,15 @@
 <div class="col-md-5 col-sm-9 col-11 mx-auto mt-2 mb-2 border border-dark p-3 rounded">
-    <h3 class="text-center">Create New Job</h3>
+    <h3 class="text-center mb-2">Create New Job</h3>
+    <% if(errorMessages){ %>
+        <div class="alert alert-danger alert-dismissible fade show" id="login-errors" role="alert">
+            <ul>
+                    <% errorMessages.forEach((error)=>{ %>
+                            <li><%= error.msg %></li>
+                    <% }) %>
+            </ul>
+        <button type="button" id="close-login-error" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
     <form class="row g-3" method="post" action="/jobs">
         <div class="col-12">
             <label for="companyname" class="form-label">Company Name</label>

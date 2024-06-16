@@ -3,11 +3,11 @@ import { JobModel } from "../models/jobs.model.js";
 
 export class JobController{
     getCreateJobView(req,res){
-        res.render('createJob');
+        res.render('createJob',{errorMessages:null});
     }
     getupdateJobView(req,res){
         const job = JobModel.getJobById(req.params.id);
-        res.render('updateJob',{job:job});
+        res.render('updateJob',{job:job,errorMessages:null});
     }
     createJob(req,res){
         const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;

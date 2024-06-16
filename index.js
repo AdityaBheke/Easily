@@ -11,12 +11,13 @@ app.use(express.static(path.resolve('public')));
 app.set('view engine','ejs');
 app.set('views',path.resolve('src','views'));
 app.use(express.urlencoded({extended: true}));
+import { validateRegister } from "./src/middlewares/validation.middleware.js";
 
 const recruiterController = new RecruiterController();
 const jobController = new JobController();
 
 app.get('/',(req,res)=>{
-    res.render('home',{errorMessage:null});
+    res.render('home',{status:null,errorMessages:null});
 })
 app.get('/jobs',jobController.getJobs);
 app.get('/jobs/:id',jobController.getJobDetails);
@@ -29,7 +30,7 @@ app.get('/jobs/:id/applicants',jobController.getApplicants);
 
 app.post('/apply/:id', fileUpload.single('resume'), jobController.apply);
 
-app.post('/registerRecruiter',recruiterController.registerRecruiter);
+app.post('/registerRecruiter', validateRegister, recruiterController.registerRecruiter);
 app.post('/loginRecruiter',recruiterController.loginRecruiter);
 
 app.listen(3000,()=>{

@@ -17,7 +17,7 @@ const recruiterController = new RecruiterController();
 const jobController = new JobController();
 
 app.get('/',(req,res)=>{
-    res.render('home',{status:null,errorMessages:null});
+    res.render('home',{status:null, registerErrorMsg:null, loginErrorMsg:null});
 })
 app.get('/jobs',jobController.getJobs);
 app.get('/jobs/:id',jobController.getJobDetails);

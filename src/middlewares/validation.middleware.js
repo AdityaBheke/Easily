@@ -9,7 +9,7 @@ export async function validateRegister(req, res, next) {
     await Promise.all(rules.map(rule=>rule.run(req)));
     const result = validationResult(req);
     if (!result.isEmpty()) {
-        res.render('home',{status:'goToRegister',errorMessages:result.array()});
+        res.render('home',{status:'goToRegister', registerErrorMsg:result.array(), loginErrorMsg:null});
     }else{
         next();
     }

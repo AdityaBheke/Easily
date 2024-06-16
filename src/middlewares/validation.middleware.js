@@ -1,4 +1,5 @@
 import { body, validationResult } from "express-validator";
+import { JobModel } from "../models/jobs.model.js";
 
 export async function validateRegister(req, res, next) {
     const rules = [
@@ -56,12 +57,22 @@ export async function validateUpdateJob(req, res, next) {
 
 export async function validateApplicant(req, res, next) {
     const rules = [
-        
+        body('name').notEmpty().withMessage('Name should not be Empty.'),
+        body('email').isEmail().withMessage('Email should not be Empty.'),
+        body('mobile').isMobilePhone().withMessage('Contact number should not be Empty.'),
+        body('resume').custom((value,{req})=>{
+            if (!req.file) {
+              throw new Error('Resume is required');
+            } else {
+              return true;
+            }
+          })
        ]
     await Promise.all(rules.map(rule=>rule.run(req)));
     const result = validationResult(req);
     if (!result.isEmpty()) {
-        res.render('updateJob',{errorMessages:result.array(),job:req.body});
+        const job = JobModel.getJobById(req.params.id);
+        res.render('job',{job:job, errorMessages:result.array()});
     }else{
         next();
     }

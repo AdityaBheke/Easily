@@ -20,7 +20,7 @@ export class JobController{
     }
     getJobDetails(req, res){
         const job = JobModel.getJobById(req.params.id);
-        res.render('job',{job:job});
+        res.render('job',{job:job, errorMessages:null});
     }
     updateJob(req,res){
         const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;

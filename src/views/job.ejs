@@ -22,7 +22,16 @@
               <span class="btn outline-yellow m-1"><%= skill%></span>
               <% }); %>
             </div>
-
+            <% if(errorMessages){ %>
+              <div class="alert alert-danger alert-dismissible fade show mb-2 mt-2" id="login-errors" role="alert">
+                  <ul>
+                          <% errorMessages.forEach((error)=>{ %>
+                                  <li><%= error.msg %></li>
+                          <% }) %>
+                  </ul>
+              <button type="button" id="close-login-error" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <% } %>
             <a class="btn btn-orange p-2" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now <i class="bi bi-box-arrow-up-right"></i></a>
             <a href="/updatejob/<%=job.id%>" class="btn btn-warning p-2">Update <i class="bi bi-pencil-square"></i></a>
             <a href="#" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete <i class="bi bi-trash"></i></a>
@@ -45,12 +54,12 @@
             <h1 class="modal-title fs-5 text-center mb-3" id="exampleModalLabel">Apply for <strong><%= job.designation %></strong> in <%= job.company %></h1>
             <form action="/apply/<%=job.id%>" method="post" enctype="multipart/form-data">
               <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Name</label>
-                <input type="text" class="form-control" name="name" id="formGroupExampleInput" placeholder="Enter Name">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
               </div>
               <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" id="formGroupExampleInput2" placeholder="Enter Email">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
               </div>
               <div class="mb-3">
                 <label for="mobile" class="form-label">Contact</label>
@@ -67,7 +76,7 @@
                 </div>
               </div>
               <div class="mb-3 d-flex justify-content-center">
-                <button type="submit" class="btn btn-orange" data-bs-toggle="modal" data-bs-target="#loginModal">Apply</button>
+                <button type="submit" class="btn btn-orange">Apply</button>
               </div>
             </form>
         </div>

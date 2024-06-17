@@ -1,5 +1,7 @@
+<% if(message){ %>
+  <h1 class="col-md-7 col-sm-9 col-11 mx-auto mt-4 mb-5 text-center text-body-secondary"><%= message %></h1>
+<% } %>
 <main class="jobs-list-background">
-
     <% jobsList.forEach((job) => { %>
       <div class="card card-width">
         <div class="card-body d-flex flex-column justify-content-between">

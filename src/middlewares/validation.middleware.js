@@ -77,3 +77,17 @@ export async function validateApplicant(req, res, next) {
         next();
     }
 }
+
+export async function validateSearchQuery(req, res, next) {
+    const rules = [
+        body('search').notEmpty().withMessage('search text should not be Empty.')
+       ]
+    await Promise.all(rules.map(rule=>rule.run(req)));
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+        const job = JobModel.getJobById(req.params.id);
+        res.redirect('/jobs');
+    }else{
+        next();
+    }
+}

@@ -35,7 +35,26 @@ export class JobModel{
         jobs.splice(index,1);
         console.log('Job deleted',jobs);
     }
+    static searchJobByName(searchQuery){
+        const result = jobs.filter((job)=> compareStrings(job.designation,searchQuery) || compareStrings(job.company,searchQuery));
+        if (result.length>0) {
+            return result;
+        } else {
+            return null;
+        }
+    }
 }
+
+function compareStrings(availableName, searchedName) {
+    const jobName = (availableName.trim()).toLowerCase();
+    const searchQuery = (searchedName.trim()).toLowerCase();
+    if(jobName.search(searchQuery)<0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
 function getDateString(date) {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let day = date.getDate();

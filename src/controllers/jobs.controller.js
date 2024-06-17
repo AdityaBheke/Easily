@@ -13,10 +13,10 @@ export class JobController{
         const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;
         const job = new JobModel(designation, category, company, location, salary, lastDate, postDate, skills, openings);
         JobModel.addJob(job);
-        res.redirect('/jobs');
+        res.redirect(`/jobs/${job.id}`);
     }
     getJobs(req,res){
-        res.render('jobsList',{jobsList: JobModel.getAllJobs(), recruiter:req.session.recruiter});
+        res.render('jobsList',{jobsList: JobModel.getAllJobs(), message:null, recruiter:req.session.recruiter});
     }
     getJobDetails(req, res){
         const job = JobModel.getJobById(req.params.id);
@@ -48,5 +48,14 @@ export class JobController{
     getApplicants(req,res){
         const job = JobModel.getJobById(req.params.id);
         res.render('applicants',{job:job, recruiter:req.session.recruiter});
+    }
+    searchJob(req,res){
+        const {search} = req.body;
+        const jobs = JobModel.searchJobByName(search);
+        if (jobs) {
+            res.render('jobsList',{jobsList: jobs, message:`Search results including '${search}'`, recruiter:req.session.recruiter});
+        }else{
+            res.render('jobsList',{jobsList: [], message:`No results found including '${search}'`, recruiter:req.session.recruiter});
+        }
     }
 }

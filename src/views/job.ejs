@@ -22,10 +22,13 @@
               <span class="btn outline-yellow m-1"><%= skill%></span>
               <% }); %>
             </div>
-            
-            <a class="btn btn-orange p-2" id="applyButton">Apply Now <i class="bi bi-box-arrow-up-right"></i></a>
-            <a href="/updatejob/<%=job.id%>" class="btn btn-warning p-2">Update <i class="bi bi-pencil-square"></i></a>
-            <a href="#" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete <i class="bi bi-trash"></i></a>
+            <% if(recruiter){ %>
+              <a href="/updatejob/<%=job.id%>" class="btn btn-warning p-2">Update <i class="bi bi-pencil-square"></i></a>
+              <a href="#" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete <i
+                  class="bi bi-trash"></i></a>
+              <% }else{ %>
+                <a class="btn btn-orange p-2" id="applyButton">Apply Now <i class="bi bi-box-arrow-up-right"></i></a>
+                <% } %>
         </div>
         <div class="card-footer d-flex justify-content-end">
             <span class="text-light">Posted on <%= job.postDate %></span>
@@ -55,18 +58,18 @@
           <% } %>
             <form action="/apply/<%=job.id%>" method="post" enctype="multipart/form-data">
               <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+                <label for="applicantName" class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" id="applicantName" placeholder="Enter Name">
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
+                <label for="applicantEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" id="applicantEmail" placeholder="Enter Email">
               </div>
               <div class="mb-3">
-                <label for="mobile" class="form-label">Contact</label>
+                <label for="applicantMobile" class="form-label">Contact</label>
                 <div class="input-group flex-nowrap">
                   <span class="input-group-text" id="addon-wrapping">+91</span>
-                  <input type="tel" class="form-control" name="mobile" placeholder="Enter Mobile" aria-label="Username"
+                  <input type="tel" class="form-control" name="mobile" placeholder="Enter Mobile" id="applicantMobile" aria-label="Username"
                     aria-describedby="addon-wrapping">
                 </div>
               </div>

@@ -10,7 +10,7 @@ export async function validateRegister(req, res, next) {
     await Promise.all(rules.map(rule=>rule.run(req)));
     const result = validationResult(req);
     if (!result.isEmpty()) {
-        res.render('home',{status:'goToRegister', registerErrorMsg:result.array(), loginErrorMsg:null});
+        res.render('home',{status:'goToRegister', registerErrorMsg:result.array(), loginErrorMsg:null, recruiter:req.session.recruiter});
     }else{
         next();
     }
@@ -30,7 +30,7 @@ export async function validateCreateJob(req, res, next) {
     await Promise.all(rules.map(rule=>rule.run(req)));
     const result = validationResult(req);
     if (!result.isEmpty()) {
-        res.render('createJob',{errorMessages:result.array()});
+        res.render('createJob',{errorMessages:result.array(), recruiter:req.session.recruiter});
     }else{
         next();
     }
@@ -49,7 +49,7 @@ export async function validateUpdateJob(req, res, next) {
     await Promise.all(rules.map(rule=>rule.run(req)));
     const result = validationResult(req);
     if (!result.isEmpty()) {
-        res.render('updateJob',{errorMessages:result.array(),job:req.body});
+        res.render('updateJob',{errorMessages:result.array(),job:req.body, recruiter:req.session.recruiter});
     }else{
         next();
     }
@@ -72,7 +72,7 @@ export async function validateApplicant(req, res, next) {
     const result = validationResult(req);
     if (!result.isEmpty()) {
         const job = JobModel.getJobById(req.params.id);
-        res.render('job',{job:job, errorMessages:result.array()});
+        res.render('job',{job:job, errorMessages:result.array(), recruiter:req.session.recruiter});
     }else{
         next();
     }

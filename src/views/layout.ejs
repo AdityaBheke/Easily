@@ -28,10 +28,14 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Recruiter
+                <%= locals.recruiter?locals.recruiter.name:'Recruiter' %>
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" id="nav-login">Login</a></li>
+                <% if(locals.recruiter){ %>
+                  <li><a class="dropdown-item"  data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
+                <% }else{ %>
+                  <li><a class="dropdown-item" id="nav-login">Login</a></li>
+                <% } %>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/createjob">Post a New Job</a></li>
               </ul>
@@ -66,16 +70,16 @@
               <% } %>
                 <form action="/registerRecruiter" method="post">
                   <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" id="formGroupExampleInput" placeholder="Enter Name">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
                   </div>
                   <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" id="formGroupExampleInput2" placeholder="Enter Email">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
                   </div>
                   <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="formGroupExampleInput2" placeholder="Enter Password">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
                   </div>
                   <div class="mb-3">
                     <button type="submit" class="btn btn-orange">Register</button>
@@ -111,12 +115,12 @@
                   <% } %>
                   <form action="/loginRecruiter" method="post">
                       <div class="mb-3">
-                        <label for="formGroupExampleInput2" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" id="formGroupExampleInput2" placeholder="Enter Email">
+                        <label for="loginEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="loginEmail" placeholder="Enter Email">
                       </div>
                       <div class="mb-3">
-                        <label for="formGroupExampleInput2" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" id="formGroupExampleInput2" placeholder="Enter Password">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" id="loginPassword" placeholder="Enter Password">
                       </div>
                       <div class="mb-3">
                         <button type="submit" class="btn btn-orange">Login</button>
@@ -126,6 +130,28 @@
                 <div class="modal-footer">
                   <label class="form-label">Don't have a Recruiter account?</label>
                   <button type="button" id="registerButton" class="btn btn-yellow">Create one</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logout Modal -->
+          <div class="modal fade" id="logoutModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/logout" method="post">
+                    <div class="mb-4 text-center">
+                      <h5 class="modal-title">Are you sure you want to Logout?</h5>
+                    </div>
+                    <div class="mb-3 text-center">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Stay Logged in</button>
+                      <button type="submit" class="btn btn-danger">Yes, Logout</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

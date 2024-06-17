@@ -12,9 +12,9 @@ export class RecruiterModel{
     static authenticateRecruiter(email, password){
         const reqReqruiter = recruiters.find((recruiter)=>{return recruiter.email==email&&recruiter.password==password});
         if (reqReqruiter) {
-            return true;
+            return reqReqruiter;
         } else {
-            return false;
+            return null;
         }
     }
 

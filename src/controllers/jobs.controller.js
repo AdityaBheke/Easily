@@ -3,11 +3,11 @@ import { JobModel } from "../models/jobs.model.js";
 
 export class JobController{
     getCreateJobView(req,res){
-        res.render('createJob',{errorMessages:null});
+        res.render('createJob',{errorMessages:null, recruiter:req.session.recruiter});
     }
     getupdateJobView(req,res){
         const job = JobModel.getJobById(req.params.id);
-        res.render('updateJob',{job:job,errorMessages:null});
+        res.render('updateJob',{job:job, errorMessages:null, recruiter:req.session.recruiter});
     }
     createJob(req,res){
         const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;
@@ -16,11 +16,11 @@ export class JobController{
         res.redirect('/jobs');
     }
     getJobs(req,res){
-        res.render('jobsList',{jobsList: JobModel.getAllJobs()});
+        res.render('jobsList',{jobsList: JobModel.getAllJobs(), recruiter:req.session.recruiter});
     }
     getJobDetails(req, res){
         const job = JobModel.getJobById(req.params.id);
-        res.render('job',{job:job, errorMessages:null});
+        res.render('job',{job:job, errorMessages:null, recruiter:req.session.recruiter});
     }
     updateJob(req,res){
         const {designation, category, company, location, salary, lastDate, postDate, skills, openings} = req.body;
@@ -47,6 +47,6 @@ export class JobController{
     }
     getApplicants(req,res){
         const job = JobModel.getJobById(req.params.id);
-        res.render('applicants',{job:job});
+        res.render('applicants',{job:job, recruiter:req.session.recruiter});
     }
 }

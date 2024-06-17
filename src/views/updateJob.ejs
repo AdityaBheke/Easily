@@ -52,7 +52,8 @@
         <div class="col-md-6">
             <label for="" class="form-label">Skills</label>
             <select class="form-select" name="skills" multiple size="4" aria-label="Size 3 select example">
-                <option>Select Skills</option>
+                <option disabled>Select Skills</option>
+                <% if(job.skills){ %>
                 <option value="ReactJs" <%=((job.skills).find((skill)=>skill=='ReactJs'))=='ReactJs'?'selected':''%> >ReactJs</option>
                 <option value="NodeJs" <%=((job.skills).find((skill)=>skill=='NodeJs'))=='NodeJs'?'selected':''%> >NodeJs</option>
                 <option value="Html" <%=((job.skills).find((skill)=>skill=='Html'))=='Html'?'selected':''%> >Html</option>
@@ -61,6 +62,16 @@
                 <option value="Python" <%=((job.skills).find((skill)=>skill=='Python'))=='Python'?'selected':''%> >Python</option>
                 <option value="Data Structures" <%=((job.skills).find((skill)=>skill=='Data Structures'))=='Data Structures'?'selected':''%> >Data Structures</option>
                 <option value="MongoDB" <%=((job.skills).find((skill)=>skill=='MongoDB'))=='MongoDB'?'selected':''%> >MongoDB</option>
+                <% }else{ %>
+                <option value="ReactJs">ReactJs</option>
+                <option value="NodeJs">NodeJs</option>
+                <option value="Html">Html</option>
+                <option value="CSS">CSS</option>
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="Data Structures">Data Structures</option>
+                <option value="MongoDB">MongoDB</option>
+                <% } %>
             </select>
         </div>
         <input type="hidden" name="postDate" value="<%=job.postDate%>">

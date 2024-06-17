@@ -25,13 +25,17 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-orange mb-3" id="recruiterButton" onclick="openRegisterModal()">I'm A Recruiter</button>
+                        <% if(recruiter){ %>
+                            <a href="/jobs" class="btn btn-orange mb-3">I'm A Recruiter</a>
+                        <% }else{ %>
+                            <button class="btn btn-orange mb-3" id="recruiterButton" onclick="openRegisterModal()">I'm A Recruiter</button>
+                        <% } %>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-7">
-            <img src="images/background.jpg" alt="" class="img-fluid">
+            <img src="/images/background.jpg" alt="" class="img-fluid">
         </div>
     </div>
 </main>

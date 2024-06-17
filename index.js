@@ -6,6 +6,7 @@ import { JobController } from "./src/controllers/jobs.controller.js";
 import fileUpload from './src/middlewares/upload.file.middleware.js';
 import { validateRegister, validateCreateJob, validateUpdateJob, validateApplicant } from "./src/middlewares/validation.middleware.js";
 import session from "express-session";
+import { authenticateRecruiter } from "./src/middlewares/auth.middleware.js";
 
 const app = express();
 app.use(expressEjsLayouts);
@@ -24,21 +25,22 @@ const recruiterController = new RecruiterController();
 const jobController = new JobController();
 
 app.get('/',(req,res)=>{
-    res.render('home',{status:null, registerErrorMsg:null, loginErrorMsg:null});
+    res.render('home',{status:null, registerErrorMsg:null, loginErrorMsg:null, recruiter:req.session.recruiter});
 })
 app.get('/jobs',jobController.getJobs);
 app.get('/jobs/:id',jobController.getJobDetails);
-app.get('/createjob',jobController.getCreateJobView);
+app.get('/createjob', authenticateRecruiter, jobController.getCreateJobView);
 app.post('/jobs', validateCreateJob, jobController.createJob);
-app.get('/updatejob/:id',jobController.getupdateJobView);
+app.get('/updatejob/:id', jobController.getupdateJobView);
 app.post('/updatejob/:id', validateUpdateJob, jobController.updateJob);
 app.post('/deletejob/:id',jobController.deleteJob);
-app.get('/jobs/:id/applicants',jobController.getApplicants);
+app.get('/jobs/:id/applicants', authenticateRecruiter, jobController.getApplicants);
 
 app.post('/apply/:id', fileUpload.single('resume'), validateApplicant, jobController.apply);
 
 app.post('/registerRecruiter', validateRegister, recruiterController.registerRecruiter);
 app.post('/loginRecruiter',recruiterController.loginRecruiter);
+app.post('/logout',recruiterController.logout);
 
 app.listen(3000,()=>{
     console.log('Server is listening on port 3000');

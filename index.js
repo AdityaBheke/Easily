@@ -4,7 +4,7 @@ import path from 'path';
 import { RecruiterController } from "./src/controllers/recruiter.controller.js";
 import { JobController } from "./src/controllers/jobs.controller.js";
 import fileUpload from './src/middlewares/upload.file.middleware.js';
-import { validateRegister, validateCreateJob, validateUpdateJob, validateApplicant } from "./src/middlewares/validation.middleware.js";
+import { validateRegister, validateCreateJob, validateUpdateJob, validateApplicant, validateSearchQuery } from "./src/middlewares/validation.middleware.js";
 import session from "express-session";
 import { authenticateRecruiter } from "./src/middlewares/auth.middleware.js";
 
@@ -35,6 +35,7 @@ app.get('/updatejob/:id', jobController.getupdateJobView);
 app.post('/updatejob/:id', validateUpdateJob, jobController.updateJob);
 app.post('/deletejob/:id',jobController.deleteJob);
 app.get('/jobs/:id/applicants', authenticateRecruiter, jobController.getApplicants);
+app.post('/search', validateSearchQuery, jobController.searchJob);
 
 app.post('/apply/:id', fileUpload.single('resume'), validateApplicant, jobController.apply);
 

@@ -5,6 +5,7 @@ import { RecruiterController } from "./src/controllers/recruiter.controller.js";
 import { JobController } from "./src/controllers/jobs.controller.js";
 import fileUpload from './src/middlewares/upload.file.middleware.js';
 import { validateRegister, validateCreateJob, validateUpdateJob, validateApplicant } from "./src/middlewares/validation.middleware.js";
+import session from "express-session";
 
 const app = express();
 app.use(expressEjsLayouts);
@@ -12,6 +13,12 @@ app.use(express.static(path.resolve('public')));
 app.set('view engine','ejs');
 app.set('views',path.resolve('src','views'));
 app.use(express.urlencoded({extended: true}));
+app.use(session({
+    secret:'secret key',
+    resave: false,
+    saveUninitialized: true,
+    cookie:{secure:false}
+}))
 
 const recruiterController = new RecruiterController();
 const jobController = new JobController();

@@ -22,17 +22,8 @@
               <span class="btn outline-yellow m-1"><%= skill%></span>
               <% }); %>
             </div>
-            <% if(errorMessages){ %>
-              <div class="alert alert-danger alert-dismissible fade show mb-2 mt-2" id="login-errors" role="alert">
-                  <ul>
-                          <% errorMessages.forEach((error)=>{ %>
-                                  <li><%= error.msg %></li>
-                          <% }) %>
-                  </ul>
-              <button type="button" id="close-login-error" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          <% } %>
-            <a class="btn btn-orange p-2" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now <i class="bi bi-box-arrow-up-right"></i></a>
+            
+            <a class="btn btn-orange p-2" id="applyButton">Apply Now <i class="bi bi-box-arrow-up-right"></i></a>
             <a href="/updatejob/<%=job.id%>" class="btn btn-warning p-2">Update <i class="bi bi-pencil-square"></i></a>
             <a href="#" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete <i class="bi bi-trash"></i></a>
         </div>
@@ -43,15 +34,25 @@
 </div>
 
 <!--Apply Modal -->
-<div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="applyJobModal" class="modal my-modal">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Easily</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" id="closeApply"></button>
         </div>
         <div class="modal-body">
             <h1 class="modal-title fs-5 text-center mb-3" id="exampleModalLabel">Apply for <strong><%= job.designation %></strong> in <%= job.company %></h1>
+            <% if(errorMessages){ %>
+              <div class="alert alert-danger alert-dismissible fade show mb-2 mt-2" id="login-errors" role="alert">
+                  <ul>
+                          <% errorMessages.forEach((error)=>{ %>
+                                  <li><%= error.msg %></li>
+                          <% }) %>
+                  </ul>
+              <button type="button" id="close-login-error" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <% } %>
             <form action="/apply/<%=job.id%>" method="post" enctype="multipart/form-data">
               <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -104,3 +105,32 @@
       </div>
     </div>
   </div>
+
+  <script>
+    window.onload = function () {
+        const applyButton = document.getElementById('applyButton');
+        const applyModal = document.getElementById('applyJobModal');
+        const closeApply = document.getElementById('closeApply');
+
+        applyButton.onclick = openApplyModal;
+        closeApply.onclick = closeApplyModal;
+
+        function openApplyModal() {
+          applyModal.style.display = 'block';
+        }
+        function closeApplyModal() {
+          applyModal.style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == applyModal) {
+              closeApplyModal();
+            }
+        };
+        if('<%-errorMessages%>'){
+          openApplyModal();
+        }
+    }
+
+
+</script>
